@@ -19,12 +19,14 @@ library(tibble)  # column_to_rownames
 #BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene", force=TRUE)
 #BiocManager::install("clusterProfiler")
 #BiocManager::install("GenomicFeatures", force=TRUE)
+#BiocManager::install("ChIPpeakAnno")
 
 library(ChIPseeker)
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 library(clusterProfiler)
 library(GenomicFeatures)
 library(org.Hs.eg.db)
+library(ChIPpeakAnno)
 
 ###
 
