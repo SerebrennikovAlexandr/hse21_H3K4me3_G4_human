@@ -1,6 +1,7 @@
 
-NAME <- 'H3K4me3_H1.ENCFF236DPM.hg19.filtered'
+#NAME <- 'H3K4me3_H1.ENCFF236DPM.hg19.filtered'
 #NAME <- 'H3K4me3_H1.ENCFF178RTX.hg19.filtered'
+NAME <- 'GSM3003539.merged'
 
 BED_FN <- paste0(DATA_DIR, NAME, '.bed')
 
