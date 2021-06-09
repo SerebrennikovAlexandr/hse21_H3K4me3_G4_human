@@ -4,7 +4,8 @@ source('lib.R')
 
 #NAME <- 'H3K4me3_H1.ENCFF178RTX.hg19'
 #NAME <- 'H3K4me3_H1.ENCFF236DPM.hg19'
-NAME <- 'GSM3003539.merged'
+#NAME <- 'GSM3003539.merged'
+NAME <- 'intersect'
 
 ###
 
