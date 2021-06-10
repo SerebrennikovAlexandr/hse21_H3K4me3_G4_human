@@ -82,3 +82,26 @@ adserebrennikov@laboratory01:~/ngs/project-git/hse21_H3K4me3_G4_human/data$ cat 
 
 #### Анализ участков вторичной структуры ДНК
 
+Теперь необходимо получить и проанализировать данные вторичной структуры ДНК.
+
+Скачиваем два BED-файла со вторичной структурой ДНК, оставляем первые 5 столбцов и объединяем оба файла аналогично файлам с гистоновыми метками.
+
+```bash
+wget https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM3003nnn/GSM3003539/suppl/GSM3003539_Homo_all_w15_th-1_minus.hits.max.K.w50.25.bed.gz
+wget https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM3003nnn/GSM3003539/suppl/GSM3003539_Homo_all_w15_th-1_plus.hits.max.K.w50.25.bed.gz
+zcat GSM3003539_Homo_all_w15_th-1_plus.hits.max.K.w50.25.bed.gz | cut -f1-5 > GSM3003539_plus.bed
+zcat GSM3003539_Homo_all_w15_th-1_minus.hits.max.K.w50.25.bed.gz | cut -f1-5 > GSM3003539_minus.bed
+cat GSM3003539_*.bed | sort -k1,1 -k2,2n | bedtools merge > GSM3003539.merged.bed 
+```
+
+Также, аналогично файлам с гистоновыми метками, 
+строим распределение длин участков вторичной структуры вместе с
+подсчетом количества пиков. Смотрим, где располагаются участки стр-ры ДНК относительно аннотированных генов.
+
+![len_hist.GSM3003539.merged](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/images/len_hist.GSM3003539.merged.png)
+
+![chip_seeker.GSM3003539.merged.plotAnnoPie](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/images/chip_seeker.GSM3003539.merged.plotAnnoPie.png)
+
+#### Анализ пересечений гистоновой метки и структуры ДНК
+
+
