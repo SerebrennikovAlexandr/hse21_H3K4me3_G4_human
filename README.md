@@ -104,4 +104,40 @@ cat GSM3003539_*.bed | sort -k1,1 -k2,2n | bedtools merge > GSM3003539.merged.be
 
 #### Анализ пересечений гистоновой метки и структуры ДНК
 
+Далее найдем пересечения между гистоновой меткой и структурами ДНК с помощью bedtools intersect,
+найдем количество и распределение длин этих пересечений:
 
+```bash
+  bedtools intersect -a GSM3003539.merged.bed -b H3K4me3_H1.merge.hg19.bed > intersect.bed
+```
+
+![len_hist.intersect](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/images/len_hist.intersect.png)
+
+Затем визуализируем в геномном браузере исходные участки 
+структуры ДНК, а также их пересечения с гистоновой меткой.
+Ссылка на соответствующую [сессию](https://genome.ucsc.edu/s/SerebrennikovAlexandr/minor_bioinformatics_2).
+
+Для дальнейшего анализа нам интересны места, где есть 
+пересечение между гистоновой меткой и стр-рой ДНК 
+(желательно рядом с аннотированным геном). 
+Ниже в качестве примера скриншоты и геномные координаты этих мест.
+
+###### chr1:74663447-74663571
+
+![Скриншот_первого_участка_в_геномном_браузере](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/screenshots/session2.png)
+
+###### chr1:75139011-75139100
+
+![Скриншот_второго_участка_в_геномном_браузере](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/screenshots/session3.png)
+
+Ассоциируем полученные пересечения с ближайшими генами c 
+помощью [скрипта](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/src/ChIPpeakAnno.R).
+В результате его работы получаем 2 файла. 
+Первый - [файл ассоциаций пиков с генами](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/data/H3K4me3_H1.intersect_with_G4_seq_Li_K.genes.txt) (14906 строк), 
+а также [список уникальных генов](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/data/H3K4me3_H1.intersect_with_G4_seq_Li_K.genes_uniq.txt) (8961 строка). 
+
+GO-анализ для полученных уникальных генов.
+
+![GO_результат](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/screenshots/res1.png)
+
+![GO_результат_таблица](https://github.com/SerebrennikovAlexandr/hse21_H3K4me3_G4_human/blob/main/screenshots/res2.png)
